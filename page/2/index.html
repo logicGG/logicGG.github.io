@@ -23,27 +23,27 @@
   <meta name="description" content="十年水流东，十年水流西。">
 <meta property="og:type" content="website">
 <meta property="og:title">
-<meta property="og:url" content="http://logicgg.github.io/archives/2022/07/index.html">
+<meta property="og:url" content="http://logicgg.github.io/page/2/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="十年水流东，十年水流西。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="基基">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://logicgg.github.io/archives/2022/07/">
+<link rel="canonical" href="http://logicgg.github.io/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | </title>
+  <title></title>
   
 
 
@@ -179,51 +179,101 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://logicgg.github.io/2022/02/06/%E5%88%A9%E7%94%A8pytorch%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1547140430943.jpg">
+      <meta itemprop="name" content="基基">
+      <meta itemprop="description" content="十年水流东，十年水流西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/06/%E5%88%A9%E7%94%A8pytorch%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="post-title-link" itemprop="url">利用pytorch实现简单的线性回归</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-06 18:47:15" itemprop="dateCreated datePublished" datetime="2022-02-06T18:47:15+08:00">2022-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-01 19:13:07" itemprop="dateModified" datetime="2022-03-01T19:13:07+08:00">2022-03-01</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/06/%E5%88%A9%E7%94%A8pytorch%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/06/%E5%88%A9%E7%94%A8pytorch%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" itemprop="commentCount"></span>
+    </a>
+  </span>
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 11 篇日志。 继续努力。</span>
-      </div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+          <h2 id="事前准备-安装pytorch库"><a href="#事前准备-安装pytorch库" class="headerlink" title="事前准备(安装pytorch库)"></a>事前准备(安装pytorch库)</h2><p>Python环境。</p>
+<p>安装pytorch库:<a target="_blank" rel="noopener" href="https://pytorch.org/">pytorch官网</a></p>
+<h2 id="首先定义我们的测试数据"><a href="#首先定义我们的测试数据" class="headerlink" title="首先定义我们的测试数据"></a>首先定义我们的测试数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"></span><br><span class="line">x = torch.unsqueeze(torch.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">100</span>), dim=<span class="number">1</span>)</span><br><span class="line">y = x.<span class="built_in">pow</span>(<span class="number">2</span>)+<span class="number">0.1</span>*torch.rand(x.size())</span><br><span class="line">x, y = Variable(x), Variable(y)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/06/%E5%88%A9%E7%94%A8pytorch%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-07-31T13:10:11+08:00"
-              content="2022-07-31">
-          07-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/07/31/%E4%BD%BF%E7%94%A8after%E4%BC%AA%E5%85%83%E7%B4%A0%E8%A7%A3%E5%86%B3%E7%9B%92%E5%AD%90%E9%AB%98%E5%BA%A6%E5%A1%8C%E9%99%B7%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">使用after伪元素解决盒子高度塌陷问题</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-
-    </div>
-  </div>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
